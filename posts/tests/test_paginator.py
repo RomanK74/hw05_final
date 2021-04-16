@@ -2,7 +2,7 @@ from django.test import Client, TestCase
 from django.urls import reverse
 
 from posts.constans import POSTS_ON_PAGE
-from posts.models import Post, User, Group
+from posts.models import Group, Post, User
 
 # Persistent url
 INDEX_URL = reverse('index')

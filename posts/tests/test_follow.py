@@ -1,7 +1,7 @@
 from django.test import Client, TestCase
 from django.urls import reverse
 
-from posts.models import Group, Post, User, Follow
+from posts.models import Follow, Group, Post, User
 
 GROUP_SLUG = 'test_group'
 AUTHOR_USERNAME = 'test_user'

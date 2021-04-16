@@ -1,15 +1,14 @@
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
-from django.shortcuts import render, get_object_or_404
-from django.shortcuts import redirect
+from django.shortcuts import get_object_or_404, redirect, render
 
 from .constans import POSTS_ON_PAGE
 from .forms import CommentForm, PostForm
-from .models import Follow, Post, Group, User
+from .models import Follow, Group, Post, User
 
 
 def index(request):
-    posts = Post.objects.all()
+    posts = Post.objects.select_related('group').all()
     paginator = Paginator(posts, POSTS_ON_PAGE)
     page_number = request.GET.get('page')
     page = paginator.get_page(page_number)

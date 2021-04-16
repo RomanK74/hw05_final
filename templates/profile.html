@@ -2,52 +2,12 @@
 <main role="main" class="container">
   <div class="row">
     <div class="col-md-3 mb-3 mt-1">
-      <div class="card">
-        <div class="card-body">
-          <div class="h2">
-            <!-- Имя автора -->
-            {{ author.get_full_name}}
-          </div>
-          <div class="h3 text-muted">
-            <!-- username автора -->
-            <a href="{% url 'profile' author.username %}"><strong class="d-block text-gray-dark"></strong>{{ author.username }}</strong></a>
-          </div>
-        </div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">
-            <div class="h6 text-muted">
-              Подписчиков: {{ author.following.count }} <br /> Подписан: {{ author.follower.count }}
-            </div>
-            <li class="list-group-item">
-              {% if following %}
-              <a class="btn btn-lg btn-light"
-                href="{% url 'profile_unfollow' author.get_username %}" role="button">
-                Отписаться
-              </a>
-              {% else %}
-              <a class="btn btn-lg btn-primary"
-                href="{% url 'profile_follow' author.get_username %}" role="button">
-              Подписаться
-              </a>
-              {% endif %}
-            </li>
-          </li>
-          <li class="list-group-item">
-            <div class="h6 text-muted">
-              <!-- Количество записей -->
-              Записей: {{ author.posts.count }}
-            </div>
-          </li>
-        </ul>
-      </div>
+      {% include "includes/author_card.html" %}
     </div>
     <div class="col-md-9">
       <!-- Начало блока с отдельным постом -->
-      {% for post in page.object_list %}
-        {% include "post_item.html" with post=post %}
-      {% endfor %}
+      {% for post in page.object_list %} {% include "includes/post_item.html" with post=post %} {% endfor %}
     </div>
   </div>
 </main>
-{% include "paginator.html" %} {% endblock %}
-<!--{% url author.username 'add_comment' post.pk 'comments'%}-->
+{% include "includes/paginator.html" %} {% endblock %}

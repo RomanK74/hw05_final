@@ -18,12 +18,12 @@ class Group(models.Model):
         unique=True
     )
 
-    def __str__(self):
-        return self.title
-
     class Meta:
         verbose_name = 'Группа'
         verbose_name_plural = 'Группы'
+
+    def __str__(self):
+        return self.title
 
 
 class Post(models.Model):
@@ -57,13 +57,13 @@ class Post(models.Model):
         null=True
     )
 
-    def __str__(self):
-        return self.text[:15]
-
     class Meta:
         ordering = ('-pub_date',)
         verbose_name = 'Пост'
         verbose_name_plural = 'Посты'
+
+    def __str__(self):
+        return self.text[:15]
 
 
 class Comment(models.Model):
@@ -90,11 +90,11 @@ class Comment(models.Model):
     )
     active = models.BooleanField(default=True)
 
-    def __str__(self):
-        return f'Автор: {self.author} Дата публикации: {self.created}'
-
     class Meta:
         ordering = ('-created',)
+
+    def __str__(self):
+        return f'Автор: {self.author} Дата публикации: {self.created}'
 
 
 class Follow(models.Model):
