@@ -15,7 +15,7 @@
               Подписчиков: {{ author.following.count }} <br /> Подписан: {{ author.follower.count }}
             </div>
             <li class="list-group-item">
-              {% if author in request.user.following %}
+              {% if following %}
               <a class="btn btn-lg btn-light" href="{% url 'profile_unfollow' author.get_username %}" role="button">
                 Отписаться
               </a> {% else %}
